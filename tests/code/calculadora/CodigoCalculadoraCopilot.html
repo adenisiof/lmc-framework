@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora teste</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .calculadora {
+      width: 300px;
+      height: 420px;
+      background-color: #007BFF; /* Azul */
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .topo {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .topo img {
+      width: 25px;
+      height: 25px;
+      margin-right: 10px;
+    }
+    .topo h1 {
+      font-size: 18px;
+      color: #fff;
+      margin: 0;
+    }
+    #display {
+      width: 100%;
+      height: 40px;
+      font-size: 18px;
+      margin-bottom: 10px;
+      text-align: right;
+      padding: 5px;
+      border: none;
+      border-radius: 5px;
+    }
+    .botoes {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      width: 100%;
+    }
+    button {
+      height: 50px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #FFD700; /* Amarelo */
+      color: #000;
+    }
+    button:hover {
+      background-color: #FFC107;
+    }
+    .limpar {
+      grid-column: span 4;
+      background-color: #FF6347;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculadora">
+    <div class="topo">
+      <img src="img/logo.png" alt="Logo">
+      <h1>Calculadora teste</h1>
+    </div>
+    <input type="text" id="display" disabled>
+    <div class="botoes">
+      <button onclick="adicionar('1')">1</button>
+      <button onclick="adicionar('2')">2</button>
+      <button onclick="adicionar('3')">3</button>
+      <button onclick="adicionar('+')">+</button>
+
+      <button onclick="adicionar('4')">4</button>
+      <button onclick="adicionar('5')">5</button>
+      <button onclick="adicionar('6')">6</button>
+      <button onclick="adicionar('-')">-</button>
+
+      <button onclick="adicionar('7')">7</button>
+      <button onclick="adicionar('8')">8</button>
+      <button onclick="adicionar('9')">9</button>
+      <button onclick="adicionar('/')">÷</button>
+
+      <button onclick="adicionar('.')">.</button>
+      <button onclick="adicionar('0')">0</button>
+      <button onclick="adicionar('*')">×</button>
+      <button onclick="calcular()">=</button>
+
+      <button class="limpar" onclick="limpar()">Limpar</button>
+    </div>
+  </div>
+
+  <script>
+    let expressao = "";
+    let operacoes = 0;
+    let resultadoMostrado = false;
+
+    function adicionar(valor) {
+      const ultimo = expressao.slice(-1);
+
+      // Após mostrar resultado, iniciar novo cálculo
+      if (resultadoMostrado && !isOperador(valor)) {
+        expressao = "";
+        resultadoMostrado = false;
+      }
+
+      // Restrição: não aceitar operador antes de número
+      if (expressao === "" && isOperador(valor)) return;
+
+      // Restrição: não aceitar dois operadores seguidos
+      if (isOperador(ultimo) && isOperador(valor)) return;
+
+      // Restrição: não aceitar mais de 5 números em sequência
+      const numerosSeq = expressao.match(/\d+/g);
+      if (numerosSeq && numerosSeq.some(num => num.length >= 5) && !isOperador(valor)) return;
+
+      // Restrição: não aceitar mais de 5 operações simultâneas
+      if (isOperador(valor)) {
+        operacoes++;
+        if (operacoes > 5) return;
+      }
+
+      expressao += valor;
+      document.getElementById('display').value = expressao;
+    }
+
+    function limpar() {
+      expressao = "";
+      operacoes = 0;
+      resultadoMostrado = false;
+      document.getElementById('display').value = "";
+    }
+
+    function calcular() {
+      try {
+        if (expressao.includes('/0')) {
+          alert("Erro: Divisão por zero não é permitida!");
+          return;
+        }
+        const resultado = eval(expressao);
+        document.getElementById('display').value = resultado;
+        expressao = "";
+        operacoes = 0;
+        resultadoMostrado = true;
+      } catch {
+        alert("Expressão inválida!");
+      }
+    }
+
+    function isOperador(valor) {
+      return ['+', '-', '*', '/'].includes(valor);
+    }
+  </script>
+</body>
+</html>
