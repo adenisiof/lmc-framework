@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # LMC Framework
 
 O LMC Framework é uma proposta de Linguagem de Marcação Conceitual voltada para estruturar a comunicação entre humanos e inteligências artificiais.

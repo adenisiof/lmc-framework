@@ -1,0 +1,184 @@
+[BRANCH]
+00_metodologia
+
+[CABECALHO]
+titulo = Calculadora Teste
+exemplo = Exemplo 01
+modulo = LMC-CODE
+versao = 1.0
+descricao = Teste inicial do LMC aplicado ao desenvolvimento de software com HTML, CSS e JavaScript.
+
+[OBJETIVO]
+Testar o LMC em desenvolvimento de software.
+
+[MODO]
+estudo | desenvolvimento
+
+[ESTILO]
+tecnico
+
+[DESCRIÇÃO]
+Escreva um código para uma calculadora simples.
+A calculadora deve receber números, montar uma expressão matemática e calcular o resultado.
+Use HTML, CSS e JavaScript.
+O código deve ser bem documentado, organizado e fácil de entender.
+
+[ARQUIVOS]
+gerar>
+index.html
+style.css
+script.js
+
+[CODIGO]
+interface>
+topo>
+imagem> img/logo-lmc.png
+descricao> Calculadora teste
+
+```
+display>
+    tipo> campo de exibição
+    valor_inicial> 0
+    somente_leitura> sim
+
+botoes>
+    linha_1>
+        btn> 1
+        btn> 2
+        btn> 3
+        btn> +
+    linha_2>
+        btn> 4
+        btn> 5
+        btn> 6
+        btn> -
+    linha_3>
+        btn> 7
+        btn> 8
+        btn> 9
+        btn> /
+    linha_4>
+        btn> .
+        btn> 0
+        btn> *
+        btn> =
+    linha_5>
+        btn> limpar
+```
+
+logica>
+.Se botão numérico for clicado
+mostrar valor no display
+
+```
+.Se botão decimal for clicado
+    adicionar ponto decimal ao número atual
+
+.Se botão operador for clicado
+    mostrar operador no display junto com os números clicados
+
+.Se outro número for clicado após operador
+    mostrar número no display junto com operador
+
+.Se botão igual for clicado
+    calcular a expressão matemática
+    mostrar resultado no display
+
+.Se botão limpar for clicado
+    limpar display
+    voltar valor inicial para 0
+```
+
+[RESTRIÇÕES]
+.nao_aceitar_operador_antes_de_numero>
+Não permitir clicar em operador antes de inserir um valor numérico.
+
+.nao_aceitar_divisao_por_zero>
+Não permitir divisão por zero.
+Se ocorrer divisão por zero, mostrar mensagem de erro no display.
+
+.nao_aceitar_operador_repetido>
+Não permitir clicar duas vezes seguidas em operadores.
+
+.nao_aceitar_mais_de_5_numeros_em_sequencia>
+Não permitir mais de 5 dígitos numéricos seguidos no mesmo número.
+
+.nao_aceitar_mais_de_5_operacoes_simultaneas>
+Não permitir mais de 5 operações na mesma expressão.
+
+.respeitar_ordem_das_operacoes>
+Em expressões longas, resolver multiplicação e divisão primeiro.
+Depois resolver soma e subtração.
+Por fim, mostrar o resultado no display.
+
+.apos_resultado>
+Quando mostrar o resultado, preparar o display para um novo cálculo.
+Se o usuário digitar novo número após o resultado, limpar o display automaticamente.
+
+[FORMATO]
+cores>
+azul
+amarelo
+branco
+
+fonte>
+Arial, sans-serif
+
+layout>
+calculadora centralizada na tela
+display na parte superior
+botões em grade
+imagem no canto superior esquerdo
+descrição no topo com o texto "Calculadora teste"
+
+imagem>
+usar_imagem> sim
+caminho> img/logo-lmc.png
+posicao> canto superior esquerdo
+texto_alternativo> Logo LMC
+
+[CONTROLE_DE_EXECUCAO]
+executar_codigo> nao
+gerar_codigo> sim
+testar_codigo> nao
+explicar_codigo> sim
+criar_arquivos_fisicos> nao
+
+[CONTROLE_DE_CODIGO]
+usar_html> sim
+usar_css> sim
+usar_javascript> sim
+usar_bibliotecas_externas> nao
+usar_framework> nao
+usar_eval> nao
+codigo_comentado> sim
+priorizar_legibilidade> sim
+priorizar_simplicidade> sim
+
+[SAIDA_ESPERADA]
+A resposta deve gerar três blocos separados:
+
+arquivo> index.html
+arquivo> style.css
+arquivo> script.js
+
+Cada arquivo deve aparecer em seu próprio bloco de código.
+Não misturar HTML, CSS e JavaScript no mesmo arquivo.
+
+[CRITERIOS_DE_ACEITACAO]
+O resultado será considerado correto se:
+
+.a calculadora exibir os números no display
+.a calculadora permitir montar expressões matemáticas simples
+.a calculadora respeitar a ordem das operações
+.a calculadora impedir divisão por zero
+.a calculadora impedir operador antes de número
+.a calculadora impedir dois operadores seguidos
+.a calculadora limitar números com mais de 5 dígitos em sequência
+.a calculadora limitar mais de 5 operações simultâneas
+.a interface usar azul, amarelo e branco
+.a fonte principal for Arial
+.a imagem estiver configurada no caminho img/logo-lmc.png
+.o topo exibir o texto "Calculadora teste"
+.o código for separado em HTML, CSS e JavaScript
+.o código estiver comentado e fácil de entender

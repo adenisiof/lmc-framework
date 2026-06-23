@@ -1,451 +1,140 @@
-# LMC-DOC v2.2 — Linguagem de Marcação Conceitual para Geração de Documentos
+# LMC-DOC — Especificação Documental da Linguagem de Marcação Conceitual
 
 **Autor:** Adenísio Pereira de Freitas
-**Categoria:** especificação documental
-**Finalidade:** estruturar a comunicação humano–IA para geração, revisão, teste e consolidação de documentos
-**Status:** versão em desenvolvimento
+**Projeto:** LMC-FRAMEWORK
+**Categoria:** módulo documental
+**Status:** em desenvolvimento
+**Arquivo:** `specs/LMC-DOC.md`
 
 ---
 
 ## 1. Definição
-A LMC-DOC é uma especificação documental da Linguagem de Marcação Conceitual voltada à organização da comunicação humano–IA, funcionando como um protocolo de uso capaz de indicar não apenas o conteúdo a ser produzido, mas também o comportamento esperado da IA diante de diferentes tipos de solicitação, como execução, revisão, teste, devolutiva e consolidação.
 
-##A **LMC-DOC** é uma especificação da **LMC — Linguagem de Marcação Conceitual** voltada para a geração de documentos com apoio de Inteligência Artificial.##
+A **LMC-DOC** é o módulo da **LMC — Linguagem de Marcação Conceitual** voltado à criação, revisão e organização de documentos com apoio de Inteligência Artificial.
 
-Seu objetivo é permitir que o usuário organize a criação de textos, relatórios, artigos, planos de aula, roteiros, atas, resumos e documentos institucionais de forma progressiva, clara e controlada.
+Sua função é estruturar a produção documental por meio de blocos semânticos, permitindo que o usuário defina objetivo, contexto, estrutura, conteúdo, restrições, formato e saída esperada.
 
-A LMC-DOC não tem como finalidade fazer a IA escrever tudo de uma vez. Sua função é organizar o processo de escrita para que a IA siga uma sequência lógica, respeitando objetivo, contexto, estrutura, restrições e formato definidos pelo usuário.
-
-A LMC-DOC atua como uma camada intermediária entre a linguagem natural humana e a resposta produzida pela IA.
-
-Fluxo conceitual:
-
-Humano
-↓
-LMC-DOC
-↓
-IA
-↓
-Documento estruturado
-
----
-
-## 2. Objetivo da LMC-DOC
-
-A LMC-DOC tem como objetivo:
-
-* estruturar a criação de documentos;
-* reduzir ambiguidades nas instruções dadas à IA;
-* separar objetivo, contexto, estrutura, conteúdo, controle e saída;
-* permitir correções por blocos;
-* manter o controle do processo nas mãos do usuário;
-* facilitar a reutilização de modelos documentais;
-* impedir que a IA antecipe etapas não solicitadas;
-* melhorar a coerência entre intenção humana e resposta gerada;
-* tornar o processo de escrita mais organizado, verificável e corrigível.
-
----
-
-## 3. Princípios da LMC-DOC
-
-### P1. Um objetivo por documento
-
-Cada documento deve ter um objetivo principal claramente definido.
-
-### P2. Estrutura antes da redação
-
-Antes de escrever o texto final, a estrutura do documento deve estar definida.
-
-### P3. Escrita em blocos
-
-O documento deve ser construído por partes: seção, tópico, parágrafo ou item.
-
-### P4. Controle do usuário
-
-A IA deve seguir a estrutura fornecida pelo usuário e não substituir o planejamento humano.
-
-### P5. Correção localizada
-
-Erros devem ser corrigidos no bloco em que aparecem, sem reescrever todo o documento desnecessariamente.
-
-### P6. Progressão sequencial
-
-A IA deve avançar etapa por etapa, respeitando a ordem definida na LMC.
-
-### P7. Inferência limitada
-
-A IA só deve completar lacunas quando isso não contrariar o objetivo, o contexto, as restrições e o nível de controle definido.
-
-### P8. Reutilização
-
-Toda estrutura LMC-DOC deve poder ser reaproveitada em outros documentos semelhantes.
-
-### P9. Custo de especificação
-
-A LMC-DOC deve evitar que o esforço para escrever a instrução seja maior que o benefício obtido com a organização do documento.
-
-Se a especificação se torna mais complexa do que o próprio texto solicitado, ela perde parte de sua utilidade prática.
-
-### P10. Redução, não eliminação total da variação
-
-A LMC-DOC não deve prometer que todas as IAs produzirão respostas idênticas. Seu objetivo é reduzir a variação interpretativa da linguagem natural, melhorando a estrutura, a coerência e a aderência ao objetivo do usuário.
-
----
-
-## 4. Diferença entre documentação e execução
-
-A LMC-DOC pode ser usada de maneiras diferentes.
-
-O usuário pode enviar um bloco LMC para:
-
-* explicar uma especificação;
-* gerar um documento;
-* revisar um texto;
-* testar a saída de uma IA;
-* comparar resultados;
-* consolidar blocos já aprovados.
-
-Por isso, a LMC-DOC deve indicar logo no início qual é o tipo de uso esperado.
-
----
-
-## 5. Protocolo de uso
-
-O **protocolo de uso** define o que a IA deve fazer com o bloco LMC recebido.
-
-### Tag principal
+A LMC-DOC herda as regras gerais da **LMC-CORE**, especialmente:
 
 ```txt
-[PROTOCOLO_DE_USO]
-```
-
-### Modelo
-
-```txt
-[PROTOCOLO_DE_USO]
-    tipo>
-        execução
-
-    ação>
-        gerar documento final
-
-    escopo>
-        responder somente ao que foi solicitado
-```
-
----
-
-## 6. Tipos de uso
-
-### especificação
-
-Usado quando o usuário quer documentar, analisar ou melhorar a própria linguagem LMC-DOC.
-
-A IA deve:
-
-* analisar a estrutura;
-* avaliar clareza e coerência;
-* sugerir melhorias;
-* não gerar documento final, a menos que isso seja pedido.
-
-Exemplo:
-
-```txt
-[PROTOCOLO_DE_USO]
-    tipo>
-        especificação
-
-    ação>
-        avaliar estrutura da linguagem
-```
-
----
-
-### execução
-
-Usado quando o usuário quer que a IA gere o documento solicitado.
-
-A IA deve:
-
-* seguir as tags informadas;
-* respeitar a estrutura;
-* produzir a saída definida em `[SAÍDA]`.
-
-Exemplo:
-
-```txt
-[PROTOCOLO_DE_USO]
-    tipo>
-        execução
-
-    ação>
-        gerar documento final
-```
-
----
-
-### revisão
-
-Usado quando o usuário quer corrigir ou melhorar um texto já produzido.
-
-A IA deve:
-
-* revisar sem alterar a intenção original;
-* corrigir ortografia, clareza, coesão ou estrutura conforme solicitado;
-* não criar novo documento se o pedido for apenas revisão.
-
-Exemplo:
-
-```txt
-[PROTOCOLO_DE_USO]
-    tipo>
-        revisão
-
-    ação>
-        corrigir clareza e coerência
-```
-
----
-
-### teste
-
-Usado quando o usuário quer verificar se uma saída respeitou o LMC.
-
-A IA deve:
-
-* comparar o resultado com a estrutura original;
-* apontar aderências;
-* apontar desvios;
-* sugerir ajustes na especificação.
-
-Exemplo:
-
-```txt
-[PROTOCOLO_DE_USO]
-    tipo>
-        teste
-
-    ação>
-        comparar saída gerada com o LMC original
-```
-
----
-
-### devolutiva
-
-Usado quando o usuário quer uma análise sem avançar para a próxima etapa.
-
-A IA deve:
-
-* avaliar;
-* comentar;
-* sugerir;
-* não executar nova produção textual completa.
-
-Exemplo:
-
-```txt
-[PROTOCOLO_DE_USO]
-    tipo>
-        devolutiva
-
-    ação>
-        avaliar clareza da estrutura
-```
-
----
-
-### consolidação
-
-Usado quando o usuário quer unir blocos já aprovados.
-
-A IA deve:
-
-* reunir partes já produzidas;
-* preservar a intenção original;
-* não acrescentar novas ideias principais sem solicitação.
-
-Exemplo:
-
-```txt
-[PROTOCOLO_DE_USO]
-    tipo>
-        consolidação
-
-    ação>
-        unir seções aprovadas
-```
-
----
-
-## 7. Sintaxe geral
-
-A LMC-DOC utiliza três níveis principais de escrita:
-
-1. **Tags principais**
-2. **Subtags conceituais**
-3. **Propriedades**
-
----
-
-## 8. Tags principais
-
-As tags principais são escritas entre colchetes.
-
-Exemplo:
-
-```txt
-[OBJETIVO]
-[DOCUMENTO]
-[ESTRUTURA]
-[SAÍDA]
-```
-
-Elas indicam os blocos maiores da instrução.
-
----
-
-## 9. Subtags conceituais
-
-As subtags organizam partes internas de um bloco.
-
-Exemplo:
-
-```txt
-seção>
-parágrafo>
-tópico>
-item>
-```
-
-Elas devem terminar com o símbolo `>`.
-
----
-
-## 10. Propriedades
-
-As propriedades indicam características específicas de uma tag ou subtag.
-
-Modelo:
-
-```txt
-propriedade>
-    valor
-```
-
-Exemplo:
-
-```txt
-titulo>
-    Introdução
-
-objetivo>
-    apresentar o problema central
-
-quantidade_paragrafos>
-    2
-```
-
----
-
-## 11. Regras de escrita
-
-### R1. Tags principais em letras maiúsculas
-
-Exemplo:
-
-```txt
-[OBJETIVO]
-```
-
-### R2. Subtags com sinal `>`
-
-Exemplo:
-
-```txt
-seção>
-```
-
-### R3. Propriedades com valor abaixo
-
-Forma recomendada:
-
-```txt
-titulo>
-    Introdução
-```
-
-Forma compacta permitida:
-
-```txt
-titulo>Introdução
-```
-
-### R4. Hierarquia por indentação
-
-A indentação indica dependência entre os elementos.
-
-Exemplo:
-
-```txt
-seção>
-    titulo>
-        Introdução
-
-    objetivo>
-        apresentar o tema principal
-
-    quantidade_paragrafos>
-        1
-```
-
-### R5. Ordem como orientação
-
-A IA deve considerar a ordem dos blocos como sequência lógica da tarefa.
-
-### R6. Estrutura fechada
-
-Quando a estrutura estiver definida, a IA não deve criar novas seções sem autorização.
-
-### R7. Sugestão apenas quando solicitada
-
-A IA só deve sugerir melhoria estrutural quando o protocolo indicar `devolutiva`, `teste` ou quando houver uma tag solicitando avaliação.
-
----
-
-## 12. Estrutura recomendada da LMC-DOC
-
-Ordem sugerida:
-
-```txt
-[NOTA]
 [PROTOCOLO_DE_USO]
 [PROJETO]
-[DOCUMENTO]
 [OBJETIVO]
 [CONTEXTO]
-[PÚBLICO_ALVO]
-[MODO]
-[ESTILO]
-[ESTRUTURA]
 [CONTROLE]
 [RESTRIÇÕES]
 [FORMATO]
+[CRITÉRIOS_DE_ACEITAÇÃO]
 [SAÍDA]
 ```
 
-Nem todas as tags são obrigatórias em todos os casos. O usuário deve escolher o nível de detalhamento de acordo com a complexidade do documento.
-
----
-
-## 13. Base mínima
-
-A base mínima da LMC-DOC é:
+A LMC-DOC acrescenta regras específicas para documentos, como:
 
 ```txt
 [DOCUMENTO]
+[ESTRUTURA_DOCUMENTAL]
+[SEÇÃO]
+[PARÁGRAFO]
+[TÓPICO]
+[ITEM]
+```
+
+---
+
+## 2. Finalidade da LMC-DOC
+
+A LMC-DOC tem como finalidade organizar a produção de documentos de forma clara, progressiva e controlada.
+
+Ela pode ser usada para criar:
+
+```txt
+relatórios
+artigos
+planos de aula
+resumos
+roteiros
+atas
+pareceres
+declarações
+projetos
+documentos institucionais
+materiais educacionais
+```
+
+A LMC-DOC não tem como objetivo fazer a IA escrever tudo de uma vez sem controle. Sua finalidade é permitir que o usuário conduza a escrita por etapas, evitando ambiguidades, extrapolações indevidas e perda da intenção original.
+
+---
+
+## 3. Problema que a LMC-DOC busca resolver
+
+A produção de documentos com IA pode apresentar problemas quando o pedido é feito apenas em linguagem natural aberta.
+
+Problemas comuns:
+
+```txt
+objetivo pouco claro
+estrutura indefinida
+excesso de liberdade da IA
+criação de informações não solicitadas
+mudança de tom durante o texto
+seções fora da ordem esperada
+dificuldade de revisar apenas uma parte
+dificuldade de testar se a IA seguiu o pedido
+```
+
+A LMC-DOC reduz esses problemas separando a instrução em blocos documentais.
+
+---
+
+## 4. Princípios da LMC-DOC
+
+### P1. Um documento deve ter objetivo claro
+
+Todo documento deve possuir uma finalidade principal definida em `[OBJETIVO]`.
+
+### P2. A estrutura vem antes da redação
+
+Antes de gerar o texto final, a organização do documento deve estar definida.
+
+### P3. A escrita pode ser feita por blocos
+
+O documento pode ser construído por seções, tópicos, parágrafos ou itens.
+
+### P4. A IA deve respeitar a estrutura definida
+
+Quando a estrutura estiver fechada, a IA não deve criar novas seções sem autorização.
+
+### P5. A revisão deve ser localizada
+
+Quando possível, a correção deve ocorrer no bloco com problema, sem reescrever todo o documento.
+
+### P6. A progressão deve ser controlada
+
+A IA não deve antecipar etapas futuras, como escrever o texto final quando o usuário pediu apenas a estrutura.
+
+### P7. A inferência deve ser limitada
+
+A IA só pode completar lacunas quando isso não contrariar o objetivo, o contexto, as restrições e o nível de controle definido.
+
+### P8. O modelo deve ser reutilizável
+
+Uma estrutura LMC-DOC deve poder ser reaproveitada em documentos semelhantes.
+
+---
+
+## 5. Estrutura básica da LMC-DOC
+
+A estrutura mínima para gerar um documento é:
+
+```txt
+[DOCUMENTO]
+    tipo do documento
+
 [OBJETIVO]
+    finalidade principal
+
 [SAÍDA]
+    produto esperado
 ```
 
 Exemplo:
@@ -458,72 +147,109 @@ Exemplo:
     Explicar a importância da tecnologia na educação.
 
 [SAÍDA]
-    Gerar texto completo em linguagem clara.
+    Gerar um relatório curto em linguagem clara.
 ```
 
 ---
 
-## 14. Base recomendada
+## 6. Estrutura recomendada da LMC-DOC
 
-A base recomendada é:
+Para documentos mais organizados, recomenda-se usar:
 
 ```txt
+[PROTOCOLO_DE_USO]
 [PROJETO]
 [DOCUMENTO]
 [OBJETIVO]
 [CONTEXTO]
 [PÚBLICO_ALVO]
-[MODO]
 [ESTILO]
-[ESTRUTURA]
+[ESTRUTURA_DOCUMENTAL]
+[CONTROLE]
 [RESTRIÇÕES]
 [FORMATO]
 [SAÍDA]
 ```
 
----
-
-## 15. Tags de identificação
-
-### [NOTA]
-
-Define orientações iniciais, metadados ou instruções gerais do LMC.
-
-Exemplo:
+Modelo:
 
 ```txt
-[NOTA]
-    Siga as orientações deste LMC.
-    tipo = LMC
-    categoria = gerador_documento
-    versao = 2.2
-    modo = consulta_orientada_por_campo
-```
+[PROTOCOLO_DE_USO]
+    tipo>
+        execução
 
----
+    ação>
+        gerar documento final
 
-### [PROJETO]
+    escopo>
+        responder somente com o documento solicitado
 
-Define o projeto, tema ou linha de trabalho.
-
-Exemplo:
-
-```txt
 [PROJETO]
-    artigo_lmc_doc
+    nome_do_projeto
+
+[DOCUMENTO]
+    tipo do documento
+
+[OBJETIVO]
+    finalidade principal do documento
+
+[CONTEXTO]
+    situação que orienta a produção do documento
+
+[PÚBLICO_ALVO]
+    público que receberá o documento
+
+[ESTILO]
+    tom da escrita
+
+[ESTRUTURA_DOCUMENTAL]
+    organização das seções, tópicos ou parágrafos
+
+[CONTROLE]
+    nivel>
+        moderado
+
+    saida>
+        texto_limpo
+
+    conteudo>
+        baseado_no_lmc
+
+    extrapolacao>
+        baixa
+
+[RESTRIÇÕES]
+    limites específicos
+
+[FORMATO]
+    forma final do documento
+
+[SAÍDA]
+    produto final esperado
 ```
-
-Observação:
-
-`[BRANCH]` pode ser usado como sinônimo técnico de `[PROJETO]`, especialmente em projetos com múltiplas ramificações.
-
-Para usuários não técnicos, recomenda-se `[PROJETO]`.
 
 ---
 
-### [DOCUMENTO]
+## 7. Tags específicas da LMC-DOC
 
-Define o tipo de documento que será produzido.
+As tags abaixo pertencem especificamente ao módulo documental.
+
+```txt
+[DOCUMENTO]
+[ESTRUTURA_DOCUMENTAL]
+[SEÇÃO]
+[PARÁGRAFO]
+[TÓPICO]
+[ITEM]
+```
+
+As demais tags gerais devem seguir a LMC-CORE.
+
+---
+
+## 8. [DOCUMENTO]
+
+A tag `[DOCUMENTO]` define o tipo de documento que será produzido.
 
 Exemplos:
 
@@ -534,9 +260,10 @@ plano de aula
 resumo
 roteiro
 ata
-projeto
-declaração
 parecer
+declaração
+projeto
+documento institucional
 ```
 
 Uso:
@@ -548,79 +275,9 @@ Uso:
 
 ---
 
-### [OBJETIVO]
+## 9. [ESTILO]
 
-Define a finalidade principal do documento.
-
-Deve responder:
-
-> O que este documento precisa alcançar?
-
-Exemplo:
-
-```txt
-[OBJETIVO]
-    Apresentar a LMC-DOC como uma linguagem estruturada para melhorar a comunicação entre humanos e Inteligência Artificial.
-```
-
----
-
-### [CONTEXTO]
-
-Apresenta a situação que motivou o documento.
-
-Exemplo:
-
-```txt
-[CONTEXTO]
-    A linguagem natural possui ambiguidades que podem gerar respostas diferentes entre sistemas de IA.
-```
-
----
-
-### [PÚBLICO_ALVO]
-
-Define para quem o documento será escrito.
-
-Exemplo:
-
-```txt
-[PÚBLICO_ALVO]
-    professores, pesquisadores e estudantes de tecnologia
-```
-
----
-
-### [MODO]
-
-Define como a IA deve atuar.
-
-Valores sugeridos:
-
-```txt
-documento
-educacional
-científico
-acadêmico
-institucional
-revisão
-teste
-devolutiva
-consolidação
-```
-
-Exemplo:
-
-```txt
-[MODO]
-    documento | científico
-```
-
----
-
-### [ESTILO]
-
-Define o tom da escrita.
+A tag `[ESTILO]` define o tom do documento.
 
 Valores sugeridos:
 
@@ -646,49 +303,51 @@ Exemplo:
 
 ---
 
-## 16. Tags de estrutura textual
+## 10. [ESTRUTURA_DOCUMENTAL]
 
-### [ESTRUTURA]
-
-Define a organização do documento.
+A tag `[ESTRUTURA_DOCUMENTAL]` define a organização interna do documento.
 
 Pode conter:
 
-* seções;
-* tópicos;
-* capítulos;
-* parágrafos;
-* itens.
+```txt
+seções
+capítulos
+tópicos
+parágrafos
+itens
+listas
+quadros
+```
 
-Modelo recomendado:
+Modelo:
 
 ```txt
-[ESTRUTURA]
+[ESTRUTURA_DOCUMENTAL]
 
     seção>
         titulo>
             Introdução
 
         objetivo>
-            Apresentar o tema principal.
+            apresentar o tema do documento
 
         quantidade_paragrafos>
             1
 
         descrição>
-            Explicar quais ideias devem compor essa seção.
+            explicar as ideias que devem aparecer na seção
 
         elementos_obrigatórios>
-            conceito principal
+            tema principal
             contexto
             justificativa
 ```
 
 ---
 
-### seção>
+## 11. seção>
 
-Define uma parte maior do documento.
+A subtag `seção>` representa uma parte maior do documento.
 
 Modelo:
 
@@ -701,7 +360,7 @@ seção>
         função da seção no documento
 
     quantidade_paragrafos>
-        número de parágrafos esperados
+        número esperado de parágrafos
 
     descrição>
         ideias que devem orientar a escrita
@@ -713,11 +372,33 @@ seção>
         limites específicos da seção
 ```
 
+Exemplo:
+
+```txt
+seção>
+    titulo>
+        Introdução
+
+    objetivo>
+        apresentar o tema e justificar sua importância
+
+    quantidade_paragrafos>
+        1
+
+    descrição>
+        explicar o problema central e apresentar o contexto geral
+
+    elementos_obrigatórios>
+        tema
+        problema
+        justificativa
+```
+
 ---
 
-### parágrafo>
+## 12. parágrafo>
 
-Define um parágrafo específico dentro do documento.
+A subtag `parágrafo>` representa um parágrafo específico.
 
 Modelo:
 
@@ -736,11 +417,30 @@ parágrafo>
         o que o parágrafo não deve fazer
 ```
 
+Exemplo:
+
+```txt
+parágrafo>
+    objetivo>
+        apresentar o problema da comunicação humano-IA
+
+    descrição>
+        explicar que a linguagem natural pode gerar ambiguidades na interpretação da IA
+
+    elementos_obrigatórios>
+        linguagem natural
+        ambiguidade
+        interpretação da IA
+
+    restrições>
+        não apresentar conclusão ainda
+```
+
 ---
 
-### tópico>
+## 13. tópico>
 
-Define um tópico dentro de uma seção.
+A subtag `tópico>` representa um assunto interno de uma seção.
 
 Modelo:
 
@@ -753,17 +453,34 @@ tópico>
         função do tópico
 
     conteúdo>
-        ideia central do tópico
+        ideia central
 
     ordem>
-        posição dentro da seção
+        posição no documento
+```
+
+Exemplo:
+
+```txt
+tópico>
+    nome>
+        Benefícios da tecnologia
+
+    objetivo>
+        apresentar contribuições positivas do uso da tecnologia
+
+    conteúdo>
+        diversificação das estratégias de ensino
+
+    ordem>
+        1
 ```
 
 ---
 
-### item>
+## 14. item>
 
-Define um elemento simples em lista, checklist ou enumeração.
+A subtag `item>` representa um elemento simples dentro de listas, checklists ou enumerações.
 
 Modelo:
 
@@ -776,545 +493,211 @@ item>
         explicação do item
 
     status>
-        pendente | concluído | revisar
+        pendente | em_revisão | aprovado
+```
+
+Exemplo:
+
+```txt
+item>
+    nome>
+        Definir objetivo do relatório
+
+    descrição>
+        identificar a finalidade principal antes da escrita
+
+    status>
+        aprovado
 ```
 
 ---
 
-## 17. Tags de conteúdo
+## 15. Propriedades documentais
 
-### descrição>
+A LMC-DOC utiliza propriedades para orientar a produção textual.
 
-A propriedade `descrição>` indica a matéria-prima que a IA deve usar para escrever uma seção ou parágrafo.
+Principais propriedades:
 
-Ela deve conter as ideias principais, mesmo que estejam escritas de forma simples.
+```txt
+titulo>
+objetivo>
+descrição>
+quantidade_paragrafos>
+elementos_obrigatórios>
+restrições>
+ordem>
+status>
+```
+
+---
+
+## 16. titulo>
+
+Define o título de uma seção, tópico ou parte do documento.
+
+Exemplo:
+
+```txt
+titulo>
+    Desenvolvimento
+```
+
+---
+
+## 17. objetivo>
+
+Define a função de uma parte do documento.
+
+Exemplo:
+
+```txt
+objetivo>
+    explicar os benefícios e os cuidados relacionados ao uso da tecnologia na educação
+```
+
+---
+
+## 18. descrição>
+
+Define a matéria-prima semântica que a IA deve usar para escrever.
 
 Exemplo:
 
 ```txt
 descrição>
-    Apresentar o papel da tecnologia na escola, indicando como professores e alunos interagem com recursos digitais no processo de ensino e aprendizagem.
+    Explicar que a tecnologia pode ampliar as estratégias de ensino, mas precisa ser usada com planejamento pedagógico.
 ```
 
-A IA pode corrigir ortografia e melhorar fluidez, desde que preserve a intenção do usuário.
+A IA pode melhorar fluidez, ortografia e organização, desde que preserve a intenção original.
 
 ---
 
-### elementos_obrigatórios>
+## 19. quantidade_paragrafos>
 
-Define termos, ideias ou argumentos que precisam aparecer no texto.
+Define a quantidade esperada de parágrafos.
+
+Exemplo:
+
+```txt
+quantidade_paragrafos>
+    2
+```
+
+Quando essa propriedade for informada, a IA deve respeitar a quantidade indicada, salvo se houver conflito com outra restrição.
+
+---
+
+## 20. elementos_obrigatórios>
+
+Define termos, conceitos ou ideias que precisam aparecer no texto.
 
 Exemplo:
 
 ```txt
 elementos_obrigatórios>
     tecnologia no contexto escolar
-    mídias e recursos digitais
-    interação entre professor e aluno
-    ensino e aprendizagem
+    planejamento pedagógico
+    papel do professor
 ```
 
 ---
 
-### benefícios>
+## 21. restrições>
 
-Define benefícios específicos que devem ser tratados.
+Define limites específicos de uma seção, parágrafo, tópico ou item.
 
 Exemplo:
 
 ```txt
-benefícios>
-    benefício_1>
-        diversificação das estratégias de ensino
-
-    benefício_2>
-        maior assimilação dos conteúdos
+restrições>
+    não criar citações
+    não apresentar dados estatísticos não informados
+    não concluir o texto nesta seção
 ```
 
 ---
 
-### cuidados>
+## 22. Ordem de produção documental
 
-Define cuidados específicos que devem ser tratados.
-
-Exemplo:
+A LMC-DOC recomenda a seguinte ordem:
 
 ```txt
-cuidados>
-    cuidado_1>
-        uso excessivo da tecnologia
-
-    cuidado_2>
-        distração dos alunos
+1. definir o tipo de documento
+2. definir o objetivo
+3. definir o contexto
+4. definir o público-alvo
+5. definir o estilo
+6. definir a estrutura documental
+7. definir o controle
+8. definir restrições
+9. definir formato
+10. gerar ou revisar a saída
 ```
 
 ---
 
-## 18. Tags de controle
-
-### [CONTROLE]
-
-Define o grau de liberdade que a IA terá para produzir o documento.
-
-Essa tag evita que o usuário precise escrever muitas restrições longas.
-
-Modelo:
-
-```txt
-[CONTROLE]
-    nivel>
-        moderado
-
-    saida>
-        texto_limpo
-
-    conteudo>
-        baseado_no_lmc
-
-    extrapolacao>
-        baixa
-```
-
----
-
-## 19. Níveis de controle
-
-### nivel>livre
-
-A IA pode organizar, complementar e melhorar o texto com maior liberdade.
-
-Indicado para:
-
-* textos criativos;
-* ideias iniciais;
-* brainstorm;
-* rascunhos.
-
-Exemplo:
-
-```txt
-[CONTROLE]
-    nivel>
-        livre
-```
-
----
-
-### nivel>moderado
-
-A IA deve respeitar estrutura, objetivo, contexto e restrições principais, mas pode fazer ajustes de fluidez, coesão e clareza.
-
-Indicado para:
-
-* relatórios;
-* planos de aula;
-* textos educacionais;
-* documentos simples.
-
-Exemplo:
-
-```txt
-[CONTROLE]
-    nivel>
-        moderado
-```
-
----
-
-### nivel>rigido
-
-A IA deve seguir apenas o que foi informado, evitando novas ideias principais.
-
-Indicado para:
-
-* documentos institucionais;
-* documentos acadêmicos;
-* testes comparativos entre IAs;
-* textos com alta necessidade de fidelidade.
-
-Exemplo:
-
-```txt
-[CONTROLE]
-    nivel>
-        rigido
-```
-
----
-
-## 20. Tipos de saída
-
-### saida>texto_limpo
-
-A IA deve entregar apenas o texto final, sem comentários extras.
-
-Significa:
-
-* não escrever frase de apresentação;
-* não escrever comentários finais;
-* não usar markdown decorativo;
-* não usar linhas divisórias;
-* não usar símbolos como `#`, `##`, `---`;
-* usar apenas títulos e parágrafos quando solicitado.
-
-Exemplo:
-
-```txt
-[CONTROLE]
-    saida>
-        texto_limpo
-```
-
----
-
-### saida>markdown
-
-A IA pode usar formatação Markdown.
-
-Permite:
-
-* títulos com `#`;
-* subtítulos;
-* listas;
-* negrito;
-* itálico;
-* blocos de citação, quando adequado.
-
-Exemplo:
-
-```txt
-[CONTROLE]
-    saida>
-        markdown
-```
-
----
-
-### saida>documento_formatado
-
-A IA pode criar uma apresentação textual mais organizada, incluindo título geral, subtítulos e separação visual.
-
-Indicado quando o usuário quer um documento visualmente mais completo.
-
-Exemplo:
-
-```txt
-[CONTROLE]
-    saida>
-        documento_formatado
-```
-
----
-
-## 21. Controle de conteúdo
-
-### conteudo>baseado_no_lmc
-
-A IA deve usar principalmente as ideias informadas no LMC, podendo fazer ajustes de coesão.
-
-Exemplo:
-
-```txt
-[CONTROLE]
-    conteudo>
-        baseado_no_lmc
-```
-
----
-
-### conteudo>restrito
-
-A IA deve usar apenas as ideias informadas, sem acrescentar novos conceitos principais.
-
-Exemplo:
-
-```txt
-[CONTROLE]
-    conteudo>
-        restrito
-```
-
----
-
-### conteudo>expandido
-
-A IA pode acrescentar ideias coerentes com o objetivo, desde que não contradiga o contexto.
-
-Exemplo:
-
-```txt
-[CONTROLE]
-    conteudo>
-        expandido
-```
-
----
-
-## 22. Controle de extrapolação
-
-### extrapolacao>baixa
-
-A IA deve evitar ideias novas e manter alta fidelidade ao LMC.
-
-### extrapolacao>media
-
-A IA pode acrescentar pequenos complementos para melhorar fluidez e clareza.
-
-### extrapolacao>alta
-
-A IA pode desenvolver o conteúdo com maior liberdade criativa.
-
-Exemplo:
-
-```txt
-[CONTROLE]
-    extrapolacao>
-        baixa
-```
-
----
-
-## 23. Restrições
-
-### [RESTRIÇÕES]
-
-Define o que a IA não pode fazer ou deve evitar.
-
-Exemplo:
-
-```txt
-[RESTRIÇÕES]
-    não criar referências bibliográficas fictícias
-    não fugir do tema
-    não criar novas seções
-    não alterar os títulos definidos
-```
-
-A tag `[RESTRIÇÕES]` deve ser usada para proibições específicas.
-
-Para controle geral da liberdade da IA, recomenda-se usar `[CONTROLE]`.
-
----
-
-## 24. Formato
-
-### [FORMATO]
-
-Define a forma final do documento.
-
-Exemplo:
-
-```txt
-[FORMATO]
-    texto organizado em três seções
-    cada seção deve ter título
-    usar parágrafos curtos
-    linguagem clara e objetiva
-```
-
-Diferença entre `[FORMATO]` e `[CONTROLE]`:
-
-* `[FORMATO]` define aparência textual e organização.
-* `[CONTROLE]` define grau de liberdade da IA.
-
----
-
-## 25. Saída
-
-### [SAÍDA]
-
-Define o produto final esperado.
-
-Exemplo:
-
-```txt
-[SAÍDA]
-    gerar o relatório completo seguindo exatamente a estrutura informada
-```
-
-A IA deve produzir apenas o que estiver definido em `[SAÍDA]`, respeitando também `[PROTOCOLO_DE_USO]`.
-
----
-
-## 26. Tags de revisão e evolução
-
-### [DEVOLUTIVA]
-
-Solicita análise da IA sobre o bloco produzido.
-
-A IA deve analisar sem avançar para a próxima etapa.
-
-Exemplo:
-
-```txt
-[DEVOLUTIVA]
-    avaliar clareza, coerência e aderência ao objetivo
-```
-
----
-
-### [REVISÃO]
-
-Define o tipo de revisão esperada.
-
-Valores sugeridos:
-
-```txt
-ortográfica
-gramatical
-científica
-estrutural
-argumentativa
-coerência
-clareza
-adequação ao público
-```
-
-Exemplo:
-
-```txt
-[REVISÃO]
-    corrigir clareza e coerência sem alterar o sentido original
-```
-
----
-
-### [CHECKLIST]
-
-Controla o que foi feito e o que falta.
-
-Exemplo:
-
-```txt
-[CHECKLIST]
-    feito>
-        definição do objetivo
-
-    feito>
-        definição da estrutura
-
-    falta>
-        redação da introdução
-
-    falta>
-        revisão final
-```
-
----
-
-### [CONSOLIDAÇÃO]
-
-Solicita união dos blocos já aprovados.
-
-Exemplo:
-
-```txt
-[CONSOLIDAÇÃO]
-    unir os parágrafos aprovados em uma seção única
-```
-
----
-
-## 27. Regras de interpretação para a IA
-
-A IA deve:
-
-1. Identificar o `[PROTOCOLO_DE_USO]`.
-2. Verificar se deve analisar, executar, revisar, testar ou consolidar.
-3. Ler o `[DOCUMENTO]`.
-4. Ler o `[OBJETIVO]` antes de gerar qualquer texto.
-5. Usar o `[CONTEXTO]` para limitar a interpretação.
-6. Respeitar o `[PÚBLICO_ALVO]`.
-7. Aplicar o `[ESTILO]`.
-8. Seguir a ordem definida em `[ESTRUTURA]`.
-9. Respeitar a quantidade de parágrafos quando informada.
-10. Usar `descrição>` como base semântica da escrita.
-11. Inserir `elementos_obrigatórios>` quando informados.
-12. Aplicar `[CONTROLE]` para definir o grau de liberdade.
-13. Usar `[RESTRIÇÕES]` como limite prioritário.
-14. Seguir `[FORMATO]` para a apresentação textual.
-15. Produzir somente o que for pedido em `[SAÍDA]`.
-16. Não antecipar etapas futuras.
-17. Não criar seções adicionais sem autorização.
-18. Não alterar o objetivo original sem solicitação.
-19. Quando houver dúvida, evitar extrapolar em excesso.
-20. Quando o tipo de uso for `teste`, comparar saída e LMC sem gerar novo documento.
-21. Quando o tipo de uso for `devolutiva`, analisar sem executar nova produção completa.
-22. Quando o tipo de uso for `consolidação`, unir apenas blocos já aprovados.
-
----
-
-## 28. Níveis de uso da LMC-DOC
+## 23. Níveis de uso da LMC-DOC
 
 ### Nível 1 — Básico
 
-Usa apenas:
+Indicado para documentos simples.
 
 ```txt
 [DOCUMENTO]
 [OBJETIVO]
 [SAÍDA]
 ```
-
-Indicado para documentos simples.
 
 ---
 
 ### Nível 2 — Estruturado
 
-Usa:
+Indicado para relatórios, planos de aula e documentos médios.
 
 ```txt
 [DOCUMENTO]
 [OBJETIVO]
 [CONTEXTO]
-[ESTRUTURA]
-[RESTRIÇÕES]
+[ESTRUTURA_DOCUMENTAL]
+[FORMATO]
 [SAÍDA]
 ```
-
-Indicado para relatórios, planos de aula e artigos simples.
 
 ---
 
 ### Nível 3 — Controlado
 
-Usa:
+Indicado para documentos que exigem fidelidade maior à intenção do usuário.
 
 ```txt
 [PROTOCOLO_DE_USO]
 [DOCUMENTO]
 [OBJETIVO]
 [CONTEXTO]
-[ESTRUTURA]
+[ESTRUTURA_DOCUMENTAL]
 [CONTROLE]
 [RESTRIÇÕES]
 [FORMATO]
 [SAÍDA]
 ```
 
-Indicado para documentos que exigem mais fidelidade à intenção do usuário.
-
 ---
 
 ### Nível 4 — Progressivo
 
-Usa:
+Indicado para textos longos construídos por partes.
 
 ```txt
 [SEÇÃO]
 [PARÁGRAFO]
 [DEVOLUTIVA]
 [REVISÃO]
-[CHECKLIST]
 [CONSOLIDAÇÃO]
 ```
 
-Indicado para construção de textos longos por etapas.
-
 ---
 
-## 29. Modelo mínimo
+## 24. Modelo mínimo
 
 ```txt
 [DOCUMENTO]
@@ -1324,20 +707,14 @@ Indicado para construção de textos longos por etapas.
     finalidade principal
 
 [SAÍDA]
-    formato esperado
+    produto esperado
 ```
 
 ---
 
-## 30. Modelo padrão
+## 25. Modelo padrão
 
 ```txt
-[NOTA]
-    tipo = LMC
-    categoria = gerador_documento
-    versao = 2.2
-    modo = consulta_orientada_por_campo
-
 [PROTOCOLO_DE_USO]
     tipo>
         execução
@@ -1346,7 +723,7 @@ Indicado para construção de textos longos por etapas.
         gerar documento final
 
     escopo>
-        responder somente ao que foi solicitado
+        responder somente com o documento solicitado
 
 [PROJETO]
     nome_do_projeto
@@ -1355,21 +732,18 @@ Indicado para construção de textos longos por etapas.
     tipo do documento
 
 [OBJETIVO]
-    finalidade principal
+    finalidade principal do documento
 
 [CONTEXTO]
-    situação ou problema que originou o documento
+    situação que orienta o documento
 
 [PÚBLICO_ALVO]
     leitores ou destinatários
 
-[MODO]
-    documento | educacional
-
 [ESTILO]
     formal | didático | claro
 
-[ESTRUTURA]
+[ESTRUTURA_DOCUMENTAL]
 
     seção>
         titulo>
@@ -1387,7 +761,6 @@ Indicado para construção de textos longos por etapas.
         elementos_obrigatórios>
             elemento 1
             elemento 2
-            elemento 3
 
 [CONTROLE]
     nivel>
@@ -1403,26 +776,78 @@ Indicado para construção de textos longos por etapas.
         baixa
 
 [RESTRIÇÕES]
-    limites que a IA deve respeitar
+    não criar informações não fornecidas
+    não alterar os títulos definidos
+    não criar novas seções
 
 [FORMATO]
-    forma final desejada
+    texto organizado em seções
+    parágrafos curtos
+    linguagem clara
 
 [SAÍDA]
-    produto final esperado
+    gerar o documento completo seguindo a estrutura informada
 ```
 
 ---
 
-## 31. Exemplo de uso — relatório curto
+## 26. Modelo de seção controlada
 
 ```txt
-[NOTA]
-    tipo = LMC
-    categoria = gerador_documento
-    versao = 2.2
-    modo = consulta_orientada_por_campo
+[SEÇÃO]
+    titulo>
+        nome da seção
 
+    objetivo>
+        função da seção
+
+    quantidade_paragrafos>
+        quantidade esperada
+
+    descrição>
+        ideias que devem aparecer
+
+    elementos_obrigatórios>
+        conceito 1
+        conceito 2
+
+    restrições>
+        limite 1
+        limite 2
+
+[SAÍDA]
+    gerar apenas esta seção
+```
+
+---
+
+## 27. Modelo de parágrafo controlado
+
+```txt
+[PARÁGRAFO]
+    objetivo>
+        função do parágrafo
+
+    descrição>
+        ideias que devem aparecer
+
+    elementos_obrigatórios>
+        conceito 1
+        conceito 2
+
+    restrições>
+        não concluir o texto
+        não criar novas informações
+
+[SAÍDA]
+    gerar apenas um parágrafo
+```
+
+---
+
+## 28. Exemplo — relatório curto
+
+```txt
 [PROTOCOLO_DE_USO]
     tipo>
         execução
@@ -1431,10 +856,10 @@ Indicado para construção de textos longos por etapas.
         gerar documento final
 
     escopo>
-        responder somente com o documento solicitado
+        responder somente com o relatório solicitado
 
 [PROJETO]
-    teste_lmc_doc_relatorio
+    exemplo_relatorio_tecnologia_educacao
 
 [DOCUMENTO]
     relatório curto
@@ -1443,92 +868,70 @@ Indicado para construção de textos longos por etapas.
     Criar um relatório simples sobre o uso da tecnologia na educação.
 
 [CONTEXTO]
-    A tecnologia está cada vez mais presente nas escolas, mas seu uso precisa estar associado a objetivos pedagógicos claros. O relatório deve apresentar benefícios, cuidados e uma conclusão equilibrada sobre o tema.
+    A tecnologia está cada vez mais presente nas escolas, mas seu uso precisa estar associado a objetivos pedagógicos claros.
 
 [PÚBLICO_ALVO]
     professores e estudantes do Ensino Médio
 
-[MODO]
-    documento | educacional
-
 [ESTILO]
     formal | didático | claro
 
-[ESTRUTURA]
+[ESTRUTURA_DOCUMENTAL]
 
     seção>
         titulo>
             Introdução
 
         objetivo>
-            Apresentar o tema do uso da tecnologia na educação.
+            apresentar o tema da tecnologia na educação
 
         quantidade_paragrafos>
             1
 
         descrição>
-            Apresentar o papel e a importância da tecnologia no contexto escolar, explicando como ela está inserida na escola por meio de mídias e recursos digitais. Abordar como professores e alunos interagem com a tecnologia no processo de ensino e aprendizagem.
+            explicar a presença da tecnologia no contexto escolar e sua relação com o ensino e a aprendizagem
 
         elementos_obrigatórios>
             tecnologia no contexto escolar
-            mídias e recursos digitais
-            interação entre professor e aluno
+            recursos digitais
             ensino e aprendizagem
-            aulas mais dinâmicas
-            transmissão de informações
 
     seção>
         titulo>
             Desenvolvimento
 
         objetivo>
-            Explicar dois benefícios e dois cuidados no uso da tecnologia em sala de aula.
+            apresentar benefícios e cuidados no uso da tecnologia
 
         quantidade_paragrafos>
             2
 
         descrição>
-            Explicar que a tecnologia pode contribuir para a diversificação das estratégias de ensino e para maior assimilação dos conteúdos. Também apresentar cuidados como o uso excessivo da tecnologia e a distração dos alunos quando não há orientação adequada.
-
-        benefícios>
-            benefício_1>
-                diversificação das estratégias de ensino
-
-            benefício_2>
-                maior assimilação dos conteúdos
-
-        cuidados>
-            cuidado_1>
-                uso excessivo da tecnologia
-
-            cuidado_2>
-                distração dos alunos
+            explicar que a tecnologia pode diversificar as estratégias de ensino, mas exige planejamento e orientação do professor
 
         elementos_obrigatórios>
             diversificação das estratégias de ensino
-            assimilação dos conteúdos
-            uso excessivo da tecnologia
-            distração dos alunos
             planejamento pedagógico
             orientação do professor
+            uso excessivo da tecnologia
+            distração dos alunos
 
     seção>
         titulo>
             Conclusão
 
         objetivo>
-            Apresentar uma posição equilibrada sobre o tema.
+            apresentar uma posição equilibrada sobre o tema
 
         quantidade_paragrafos>
             1
 
         descrição>
-            Concluir que a tecnologia pode ser uma aliada no processo educacional, desde que seja utilizada de forma planejada, equilibrada e com finalidades pedagógicas claras. Reforçar que a tecnologia não substitui o papel do professor.
+            concluir que a tecnologia pode ser uma aliada no processo educacional quando usada com planejamento e finalidade pedagógica
 
         elementos_obrigatórios>
             tecnologia como aliada
             uso planejado
-            equilíbrio
             finalidade pedagógica
             papel do professor
 
@@ -1550,7 +953,6 @@ Indicado para construção de textos longos por etapas.
     não criar citações ou referências bibliográficas
     não usar tópicos no texto final
     não ultrapassar 500 palavras
-    não fugir do tema educação e tecnologia
     não criar novas seções
     não alterar os títulos das seções
 
@@ -1566,94 +968,199 @@ Indicado para construção de textos longos por etapas.
 
 ---
 
-## 32. Exemplo de uso — teste de resultado
+## 29. Exemplo — artigo científico
 
 ```txt
 [PROTOCOLO_DE_USO]
     tipo>
-        teste
+        planejamento
 
     ação>
-        comparar saída gerada com o LMC original
+        estruturar artigo científico
+
+    escopo>
+        não escrever o artigo completo
+
+[PROJETO]
+    artigo_lmc
+
+[DOCUMENTO]
+    artigo científico
 
 [OBJETIVO]
-    Verificar se o documento gerado respeitou a estrutura, o conteúdo, as restrições e o formato definidos no LMC-DOC.
+    Estruturar um artigo sobre a LMC como linguagem de comunicação humano-IA.
 
-[BASE_DE_REFERÊNCIA]
-    LMC-DOC original usado para gerar o relatório.
+[CONTEXTO]
+    O artigo discutirá a LMC como uma linguagem de marcação conceitual para reduzir ambiguidades em interações com IA.
 
-[SAÍDA_GERADA]
-    Inserir aqui o texto produzido pela IA.
+[PÚBLICO_ALVO]
+    pesquisadores, professores e profissionais de tecnologia
 
-[CRITÉRIOS_DE_AVALIAÇÃO]
-    verificar se manteve as seções
-    verificar se respeitou a quantidade de parágrafos
-    verificar se seguiu o estilo
-    verificar se respeitou as restrições
-    verificar se houve extrapolação de conteúdo
+[ESTILO]
+    acadêmico | técnico | claro
+
+[ESTRUTURA_DOCUMENTAL]
+
+    seção>
+        titulo>
+            Introdução
+
+        objetivo>
+            apresentar o problema, a justificativa e o objetivo do artigo
+
+    seção>
+        titulo>
+            Fundamentação teórica
+
+        objetivo>
+            relacionar linguagem, comunicação humano-IA e estruturação de instruções
+
+    seção>
+        titulo>
+            Metodologia
+
+        objetivo>
+            explicar como a LMC será analisada e testada
+
+    seção>
+        titulo>
+            Resultados e discussão
+
+        objetivo>
+            apresentar e interpretar os testes realizados
+
+    seção>
+        titulo>
+            Conclusão
+
+        objetivo>
+            apresentar contribuições, limites e trabalhos futuros
+
+[RESTRIÇÕES]
+    não escrever o artigo completo nesta etapa
+    não criar referências bibliográficas fictícias
+    não inventar resultados
 
 [SAÍDA]
-    apresentar avaliação comparativa com pontos corretos, desvios e sugestões de ajuste
+    gerar apenas a estrutura comentada do artigo
 ```
 
 ---
 
-## 33. Observações sobre diferentes IAs
+## 30. Regras de interpretação específicas da LMC-DOC
 
-Testes preliminares indicam que diferentes IAs podem obedecer de forma diferente à mesma estrutura LMC-DOC.
+Ao receber uma instrução LMC-DOC, a IA deve:
 
-A LMC-DOC tende a controlar melhor:
+1. Identificar o tipo de documento em `[DOCUMENTO]`.
+2. Ler o `[OBJETIVO]` antes de iniciar a escrita.
+3. Usar o `[CONTEXTO]` para limitar a interpretação.
+4. Adaptar a linguagem ao `[PÚBLICO_ALVO]`.
+5. Aplicar o `[ESTILO]` informado.
+6. Seguir a ordem definida em `[ESTRUTURA_DOCUMENTAL]`.
+7. Respeitar os títulos definidos pelo usuário.
+8. Respeitar a quantidade de parágrafos quando informada.
+9. Usar `descrição>` como base semântica da escrita.
+10. Incluir os `elementos_obrigatórios>` quando informados.
+11. Respeitar `restrições>` específicas de cada seção ou parágrafo.
+12. Aplicar `[CONTROLE]` conforme definido pela LMC-CORE.
+13. Priorizar `[RESTRIÇÕES]` quando houver conflito.
+14. Seguir o `[FORMATO]` esperado.
+15. Produzir somente o que estiver definido em `[SAÍDA]`.
+16. Não criar novas seções se a estrutura estiver fechada.
+17. Não alterar a intenção do usuário.
+18. Não criar referências, dados ou citações não fornecidas.
+19. Quando o pedido for revisão, corrigir sem mudar o sentido original.
+20. Quando o pedido for consolidação, unir apenas blocos aprovados.
 
-* estrutura;
-* tema;
-* quantidade de seções;
-* quantidade de parágrafos;
-* estilo geral;
-* intenção principal.
+---
 
-A LMC-DOC pode ter menor controle sobre:
+## 31. Critérios de qualidade documental
 
-* uso automático de Markdown;
-* frases de apresentação;
-* grau de extrapolação;
-* enriquecimento textual;
-* interpretação fina de benefícios, cuidados ou condições.
+Um documento gerado com LMC-DOC deve ser avaliado pelos seguintes critérios:
 
-Por isso, a LMC-DOC deve ser entendida como ferramenta de redução de ambiguidade, não como garantia absoluta de respostas idênticas.
+```txt
+aderência ao objetivo
+respeito à estrutura definida
+respeito às restrições
+coerência entre seções
+clareza textual
+adequação ao público-alvo
+adequação ao estilo solicitado
+controle da extrapolação
+fidelidade às informações fornecidas
+qualidade da saída final
+```
+
+---
+
+## 32. Relação com outros módulos
+
+A LMC-DOC pode ser combinada com outros módulos da LMC.
+
+Exemplos:
+
+```txt
+LMC-DOC + LMC-EDU
+    criação de planos de aula, relatórios pedagógicos e materiais educacionais
+
+LMC-DOC + LMC-REQ
+    documentação de requisitos e regras de negócio
+
+LMC-DOC + LMC-AGILE
+    documentação de sprints, histórias de usuário e retrospectivas
+
+LMC-DOC + LMC-CODE
+    documentação técnica de sistemas e arquivos de projeto
+
+LMC-DOC + LMC-TEST
+    avaliação de documentos gerados por diferentes IAs
+```
+
+---
+
+## 33. Limites da LMC-DOC
+
+A LMC-DOC não garante que todas as IAs produzirão respostas idênticas.
+
+Ela busca reduzir a variação interpretativa, mas ainda podem ocorrer diferenças em:
+
+```txt
+estilo textual
+profundidade da explicação
+uso automático de Markdown
+grau de síntese ou expansão
+interpretação de termos abertos
+organização visual da resposta
+```
+
+Por isso, a LMC-DOC deve ser entendida como ferramenta de controle e redução de ambiguidade, não como garantia absoluta de uniformidade.
 
 ---
 
 ## 34. Definição acadêmica da LMC-DOC
 
-A LMC-DOC pode ser definida como uma especificação da Linguagem de Marcação Conceitual voltada à produção documental assistida por Inteligência Artificial, estruturando objetivos, contexto, seções, parágrafos, restrições, níveis de controle e formatos de saída com o propósito de reduzir ambiguidades da linguagem natural, controlar a progressão textual e preservar a intenção do usuário durante o processo de escrita.
-
-A LMC-DOC não busca eliminar completamente a interpretação da IA, mas reduzir a variação interpretativa e tornar o processo de escrita mais organizado, corrigível e reutilizável.
+A LMC-DOC pode ser definida como uma especificação modular da Linguagem de Marcação Conceitual voltada à produção documental assistida por Inteligência Artificial, estruturando tipo de documento, objetivo, contexto, público-alvo, estilo, seções, parágrafos, restrições e formato de saída com o propósito de reduzir ambiguidades da linguagem natural, controlar a progressão textual e preservar a intenção do usuário durante o processo de escrita.
 
 ---
 
-## 35. Síntese da versão 2.2
+## 35. Síntese
 
-A LMC-DOC v2.2 introduz três avanços principais:
+A LMC-DOC organiza a produção documental em blocos claros.
 
-1. **Protocolo de uso**
-   Diferencia especificação, execução, revisão, teste, devolutiva e consolidação.
+Sua função é transformar uma intenção textual aberta em uma instrução estruturada, permitindo que a IA compreenda melhor:
 
-2. **Controle por níveis**
-   Permite definir se a IA terá liberdade livre, moderada ou rígida.
+```txt
+qual documento produzir
+para quem produzir
+com qual objetivo
+em qual contexto
+com qual estrutura
+com quais limites
+em qual formato
+```
 
-3. **Custo de especificação**
-   Reconhece que a LMC deve permanecer simples o suficiente para ser útil ao usuário.
-
----
-
-## 36. Encerramento
-
-A LMC-DOC é uma linguagem em evolução.
-
-Sua proposta não é substituir a escrita humana, mas organizar a intenção do usuário para que a IA atue como ferramenta de apoio, respeitando estrutura, contexto, limites e objetivos.
-
-A principal contribuição da LMC-DOC é permitir que o usuário conduza o processo de produção textual de forma progressiva, clara e controlada, sem depender apenas de prompts soltos em linguagem natural.
+A LMC-DOC não substitui a escrita humana. Ela organiza a intenção humana para que a IA atue como ferramenta de apoio na produção, revisão e consolidação de documentos.
 
 ---
 
-**Fim da especificação LMC-DOC v2.2**
+**Fim da especificação LMC-DOC**
