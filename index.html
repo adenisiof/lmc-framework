@@ -2,100 +2,254 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Calculadora</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LMC Framework</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      margin: 0;
+      background-color: #f5f7fa;
+      color: #222;
+      line-height: 1.6;
     }
-    .calculadora {
-      background-color: #007BFF; /* Azul */
-      padding: 20px;
+
+    header {
+      background-color: #1f2937;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      margin-top: 10px;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    section {
+      background: white;
+      margin-bottom: 25px;
+      padding: 25px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
-    #resultado {
-      width: 100%;
-      height: 40px;
-      font-size: 18px;
-      margin-bottom: 10px;
-      text-align: right;
-      padding: 5px;
-      border: none;
-      border-radius: 5px;
+
+    h2 {
+      color: #1f2937;
+      border-left: 5px solid #2563eb;
+      padding-left: 10px;
     }
-    .botoes {
-      display: grid;
-      grid-template-columns: repeat(4, 60px);
-      gap: 10px;
+
+    code, pre {
+      background-color: #f1f5f9;
+      border-radius: 6px;
     }
-    button {
-      height: 50px;
-      font-size: 18px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      background-color: #FFD700; /* Amarelo */
-      color: #000;
+
+    pre {
+      padding: 15px;
+      overflow-x: auto;
+      border-left: 4px solid #2563eb;
     }
-    button:hover {
-      background-color: #FFC107;
+
+    ul {
+      padding-left: 25px;
+    }
+
+    .tag {
+      display: inline-block;
+      background-color: #e0ecff;
+      color: #1d4ed8;
+      padding: 4px 8px;
+      border-radius: 6px;
+      margin: 3px;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1f2937;
+      color: white;
+      margin-top: 30px;
     }
   </style>
 </head>
+
 <body>
-  <div class="calculadora">
-    <input type="text" id="resultado" disabled>
-    <div class="botoes">
-      <button onclick="adicionar('7')">7</button>
-      <button onclick="adicionar('8')">8</button>
-      <button onclick="adicionar('9')">9</button>
-      <button onclick="adicionar('/')">÷</button>
 
-      <button onclick="adicionar('4')">4</button>
-      <button onclick="adicionar('5')">5</button>
-      <button onclick="adicionar('6')">6</button>
-      <button onclick="adicionar('*')">×</button>
+  <header>
+    <h1>LMC Framework</h1>
+    <p>Linguagem de Marcação Conceitual para comunicação estruturada entre humanos e inteligências artificiais.</p>
+  </header>
 
-      <button onclick="adicionar('1')">1</button>
-      <button onclick="adicionar('2')">2</button>
-      <button onclick="adicionar('3')">3</button>
-      <button onclick="adicionar('-')">−</button>
+  <main>
 
-      <button onclick="adicionar('0')">0</button>
-      <button onclick="adicionar('.')">.</button>
-      <button onclick="calcular()">=</button>
-      <button onclick="adicionar('+')">+</button>
+    <section>
+      <h2>O que é o LMC?</h2>
+      <p>
+        O <strong>LMC Framework</strong> é uma proposta de linguagem de marcação conceitual criada para organizar
+        comandos, instruções e documentos utilizados na comunicação entre seres humanos e inteligências artificiais.
+      </p>
 
-      <button onclick="limpar()" style="grid-column: span 4; background-color:#FF6347; color:#fff;">C</button>
-    </div>
-  </div>
+      <p>
+        Seu objetivo é reduzir ambiguidades, controlar o escopo da resposta, definir melhor a intenção do usuário
+        e tornar a interação humano–IA–humano mais clara, verificável e reutilizável.
+      </p>
+    </section>
 
-  <script>
-    function adicionar(valor) {
-      document.getElementById('resultado').value += valor;
-    }
+    <section>
+      <h2>Por que usar o LMC?</h2>
+      <p>
+        Em interações comuns com IA, muitas respostas podem sair incompletas, genéricas ou fora do objetivo esperado.
+        O LMC busca resolver esse problema por meio de uma estrutura organizada de instrução.
+      </p>
 
-    function limpar() {
-      document.getElementById('resultado').value = '';
-    }
+      <ul>
+        <li>Define claramente o objetivo da interação.</li>
+        <li>Separa contexto, restrições, modo de execução e saída esperada.</li>
+        <li>Ajuda a IA a compreender melhor o que deve ser feito.</li>
+        <li>Permite criar comandos reutilizáveis.</li>
+        <li>Facilita testes comparativos entre diferentes IAs.</li>
+      </ul>
+    </section>
 
-    function calcular() {
-      const expressao = document.getElementById('resultado').value;
-      try {
-        if (expressao.includes('/0')) {
-          alert("Erro: Divisão por zero não é permitida!");
-          return;
-        }
-        document.getElementById('resultado').value = eval(expressao);
-      } catch {
-        alert("Expressão inválida!");
-      }
-    }
-  </script>
+    <section>
+      <h2>Estrutura básica de um comando LMC</h2>
+
+      <p>
+        Um comando LMC pode ser organizado em blocos. Cada bloco orienta uma parte da interação.
+      </p>
+
+      <pre><code>[OBJETIVO]
+Descrever claramente o que deve ser produzido.
+
+[CONTEXTO]
+Apresentar as informações necessárias para a IA compreender a situação.
+
+[MODO]
+Definir como a IA deve agir: explicar, gerar, revisar, comparar, resumir ou estruturar.
+
+[RESTRIÇÕES]
+Indicar limites, regras, formato, linguagem, público-alvo ou estilo.
+
+[SAÍDA_ESPERADA]
+Definir como o resultado deve ser entregue.</code></pre>
+    </section>
+
+    <section>
+      <h2>Exemplo simples de uso</h2>
+
+      <p>
+        Abaixo temos um exemplo de comando usando a lógica do LMC para gerar uma explicação didática:
+      </p>
+
+      <pre><code>[OBJETIVO]
+Explicar o conceito de função logarítmica para alunos do Ensino Médio.
+
+[CONTEXTO]
+Os alunos já estudaram potenciação, mas ainda apresentam dificuldade em compreender logaritmos.
+
+[MODO]
+Explicação didática, com linguagem simples e exemplos progressivos.
+
+[RESTRIÇÕES]
+Não usar linguagem excessivamente técnica.
+Relacionar logaritmo com potência.
+Apresentar pelo menos um exemplo resolvido.
+
+[SAÍDA_ESPERADA]
+Texto explicativo organizado em introdução, desenvolvimento e exemplo.</code></pre>
+    </section>
+
+    <section>
+      <h2>Módulos previstos</h2>
+
+      <p>
+        O LMC Framework pode ser dividido em módulos, cada um voltado a uma finalidade específica.
+      </p>
+
+      <div>
+        <span class="tag">LMC-CORE</span>
+        <span class="tag">LMC-DOC</span>
+        <span class="tag">LMC-CODE</span>
+        <span class="tag">LMC-EDU</span>
+        <span class="tag">LMC-REQ</span>
+        <span class="tag">LMC-AGILE</span>
+        <span class="tag">LMC-PROCESS</span>
+        <span class="tag">LMC-TEST</span>
+      </div>
+
+      <ul>
+        <li><strong>LMC-CORE:</strong> núcleo universal da linguagem.</li>
+        <li><strong>LMC-DOC:</strong> módulo para geração de documentos.</li>
+        <li><strong>LMC-CODE:</strong> módulo para geração e organização de código.</li>
+        <li><strong>LMC-EDU:</strong> módulo voltado à educação e planos de aula.</li>
+        <li><strong>LMC-REQ:</strong> módulo para levantamento de requisitos.</li>
+        <li><strong>LMC-AGILE:</strong> módulo para processos ágeis.</li>
+        <li><strong>LMC-PROCESS:</strong> módulo para descrição de processos.</li>
+        <li><strong>LMC-TEST:</strong> módulo para testes e validação de respostas.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Estrutura do repositório</h2>
+
+      <p>
+        A organização recomendada para o projeto é:
+      </p>
+
+      <pre><code>lmc-framework/
+│
+├── README.md
+├── LICENSE
+├── index.html
+│
+├── docs/
+├── specs/
+├── examples/
+├── tests/
+└── img/</code></pre>
+
+      <ul>
+        <li><strong>docs/</strong>: textos explicativos e fundamentação do projeto.</li>
+        <li><strong>specs/</strong>: especificações oficiais dos módulos.</li>
+        <li><strong>examples/</strong>: exemplos de aplicação do LMC.</li>
+        <li><strong>tests/</strong>: testes comparativos com diferentes inteligências artificiais.</li>
+        <li><strong>img/</strong>: imagens, diagramas e materiais visuais.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Objetivo do projeto</h2>
+
+      <p>
+        O LMC não busca apenas criar comandos mais bonitos ou organizados. A proposta central é funcionar como um
+        protocolo de comunicação entre humano e IA, permitindo que a intenção do usuário seja registrada de forma
+        mais clara, estruturada e controlável.
+      </p>
+
+      <p>
+        Assim, o LMC pode ser usado em contextos educacionais, documentais, técnicos, científicos e de desenvolvimento
+        de software, sempre com foco na redução de ambiguidades e na melhoria da qualidade da resposta gerada.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>LMC Framework — Projeto em desenvolvimento</p>
+  </footer>
+
 </body>
 </html>
